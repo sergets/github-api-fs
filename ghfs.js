@@ -1,4 +1,5 @@
-var extend = require('extend');
+var extend = require('extend'),
+    defineMethod = require('./lib/defineMethod');
 
 var BASE_URI = 'https://api.github.com/';
 
@@ -48,8 +49,10 @@ GhFs.prototype = {
                 }.bind(this));
             }
         }.bind(this));
-    },
+    }
+}
 
+defineMethod(GhFs, {
     writeFile : function(path, data) {
         return this._getHeadSha()
             .then(function(serverSha) {
@@ -83,6 +86,6 @@ GhFs.prototype = {
                 });
             }.bind(this));
     }
-};
+});
 
 module.exports = GhFs;

@@ -5,6 +5,8 @@ var BASE_URI = 'https://api.github.com/';
 module.exports = function(plan) {
     var request = sinon.stub();
 
+    request.rejects('Request called with unexpected params');
+
     plan.forEach(function(call) {
         request.withArgs(sinon.match({
             method : call.call.split(' ')[0],
